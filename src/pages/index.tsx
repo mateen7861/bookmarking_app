@@ -1,11 +1,16 @@
 import React from "react"
 import { useQuery, useMutation } from "@apollo/client"
+import Card from '../components/Card'
 import gql from "graphql-tag"
+import "./index.css"
+import TextField from "@material-ui/core/TextField/TextField"
+import { Button } from "@material-ui/core"
 const GET_BOOKMARKS = gql`
 {
   bookmarks{ 
     id
     title
+    url
     
   }
 }
@@ -22,8 +27,9 @@ export default function Home() {
   const [addBookmark] = useMutation(ADD_BOOKMARK)
   let titleField, urlField
   const handleSubmit = () => {
-    console.log(titleField.value)
     console.log(urlField.value)
+    console.log(titleField.value)
+
     addBookmark({
       variables: {
         title: titleField.value,
@@ -33,21 +39,29 @@ export default function Home() {
       refetchQueries: [{ query: GET_BOOKMARKS }]
     })
   }
-  console.log(data)
-  return <div>
-    <label htmlFor="">
-      Bookmark Title
-      <br />
-      <input type="text" name="" id="" ref={node => titleField = node} />
-    </label>
-    <br />
-    <label htmlFor="">
-      Bookmark Url
-      <br />
-      <input type="text" name="" id="" ref={node => urlField = node} />
-    </label>
-    <br />
-    <br />
-    <button onClick={handleSubmit}>Add Bookmark</button>
+
+  return <div className="parent__container">
+
+    <div className="form_container">
+      <div>
+        <TextField variant="filled" label="Bookmark Title" inputRef={node => titleField = node} />
+        <br />
+        <br />
+
+        <TextField variant="filled" label="Bookmark Url" inputRef={node => urlField = node} />
+        <br />
+        <br />
+        <Button variant="contained" color="primary" fullWidth onClick={handleSubmit}>Add Bookmark</Button>
+      </div>
+    </div>
+    <div className="cards__container">
+      {data?.bookmarks.map(({ url, title, id }) => (
+
+
+        <Card url={url} title={title} id={id} />
+
+      ))}
+
+    </div>
   </div>
 }
