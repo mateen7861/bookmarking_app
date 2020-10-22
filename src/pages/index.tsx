@@ -5,6 +5,7 @@ import gql from "graphql-tag"
 import "./index.css"
 import TextField from "@material-ui/core/TextField/TextField"
 import { Button } from "@material-ui/core"
+import Header from "../components/Header"
 const GET_BOOKMARKS = gql`
 {
   bookmarks{ 
@@ -41,9 +42,10 @@ export default function Home() {
   }
 
   return <div className="parent__container">
-
+    <Header />
     <div className="form_container">
       <div>
+
         <TextField variant="filled" label="Bookmark Title" inputRef={node => titleField = node} />
         <br />
         <br />
@@ -54,7 +56,15 @@ export default function Home() {
         <Button variant="contained" color="primary" fullWidth onClick={handleSubmit}>Add Bookmark</Button>
       </div>
     </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1 style={{ textAlign: 'center' }}><i>Bookmark List</i></h1>
     <div className="cards__container">
+
+
       {data?.bookmarks.map(({ url, title, id }) => (
 
 
