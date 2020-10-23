@@ -28,9 +28,7 @@ export default function Home() {
   const [addBookmark] = useMutation(ADD_BOOKMARK)
   let titleField, urlField
   const handleSubmit = () => {
-    console.log(urlField.value)
-    console.log(titleField.value)
-
+    
     addBookmark({
       variables: {
         title: titleField.value,

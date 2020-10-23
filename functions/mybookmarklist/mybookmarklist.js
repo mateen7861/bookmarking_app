@@ -1,10 +1,10 @@
 const { ApolloServer, gql } = require("apollo-server-lambda")
 var faunadb = require("faunadb"),
   q = faunadb.query
-const dotenv = require("dotenv");
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
+// const dotenv = require("dotenv");
+// if (process.env.NODE_ENV !== 'production') {
+//   dotenv.config();
+// }
 
 const typeDefs = gql`
   type Query {
