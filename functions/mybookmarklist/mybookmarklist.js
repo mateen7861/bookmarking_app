@@ -1,6 +1,10 @@
 const { ApolloServer, gql } = require("apollo-server-lambda")
 var faunadb = require("faunadb"),
   q = faunadb.query
+const dotenv = require("dotenv");
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 const typeDefs = gql`
   type Query {
@@ -21,7 +25,7 @@ const resolvers = {
     bookmarks: async (root, args, context) => {
       try {
         var adminClient = new faunadb.Client({
-          secret: "fnAD4xSLvbACCS_OF0hsKwxFkYAFIagSxJzkrG1l",
+          secret: process.env.FAUNADB_SECRET,
         })
         const result = await adminClient.query(
           q.Map(
@@ -48,7 +52,7 @@ const resolvers = {
       console.log(title, url)
       try {
         var adminClient = new faunadb.Client({
-          secret: "fnAD4xSLvbACCS_OF0hsKwxFkYAFIagSxJzkrG1l",
+          secret: process.env.FAUNADB_SECRET,
         })
 
         const result = await adminClient.query(
