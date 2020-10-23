@@ -27,7 +27,7 @@ const resolvers = {
         var adminClient = new faunadb.Client({
           secret: "fnAD4xSLvbACCS_OF0hsKwxFkYAFIagSxJzkrG1l",
         })
-        console.log(process.env.FAUNADB_ADMIN_SECRET)
+        console.log(process.env)
         const result = await adminClient.query(
           q.Map(
             q.Paginate(q.Match(q.Index("url"))),
