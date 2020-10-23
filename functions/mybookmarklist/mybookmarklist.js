@@ -25,7 +25,7 @@ const resolvers = {
     bookmarks: async (root, args, context) => {
       try {
         var adminClient = new faunadb.Client({
-          secret: process.env.FAUNADB_ADMIN_SECRET,
+          secret: "fnAD4xSLvbACCS_OF0hsKwxFkYAFIagSxJzkrG1l",
         })
         console.log(process.env.FAUNADB_ADMIN_SECRET)
         const result = await adminClient.query(
@@ -53,7 +53,7 @@ const resolvers = {
       console.log(title, url)
       try {
         var adminClient = new faunadb.Client({
-          secret: process.env.FAUNADB_ADMIN_SECRET,
+          secret: "fnAD4xSLvbACCS_OF0hsKwxFkYAFIagSxJzkrG1l",
         })
 
         const result = await adminClient.query(
