@@ -24,7 +24,7 @@ const ADD_BOOKMARK = gql`
     }
 `
 export default function Home() {
-  console.log(process.env)
+
   const { data, loading, error } = useQuery(GET_BOOKMARKS)
   const [addBookmark] = useMutation(ADD_BOOKMARK)
   let titleField, urlField
